@@ -13,12 +13,17 @@
       <link>http://localhost:1313/posts/pythonchallenge/1/</link>
       <pubDate>Wed, 02 Jul 2025 12:44:22 +0900</pubDate>
       <guid>http://localhost:1313/posts/pythonchallenge/1/</guid>
-      <description>&lt;p&gt;The URL for level1 changed from &lt;code&gt;274877906944.html&lt;/code&gt; to (&lt;a href=&#34;http://www.pythonchallenge.com/pc/def/map.html)&#34;&gt;http://www.pythonchallenge.com/pc/def/map.html)&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;The URL for level1 changed from &lt;code&gt;274877906944.html&lt;/code&gt; to map.html.&lt;/p&gt;
 &lt;p&gt;As I said previously for it&amp;rsquo;s good practice to check the HTML title first.&lt;/p&gt;
 &lt;p&gt;The HTML title for level1 is &lt;em&gt;What about making trans?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Moving your cursor to the tab will show it the HTML title.
-You can also view it as a HTML tag by right clicking and Inspect.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m also given an image &lt;a href=&#34;http://localhost:1313/1/map.jpg&#34;&gt;map.jpg&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Moving your cursor to the tab will show the HTML title.&lt;/p&gt;
+&lt;p&gt;You can also view it as a HTML tag by right clicking and Inspect.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m also given an a scratch book.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/pythonchallenge/level1/map.jpg&#34;
+         alt=&#34;map&#34;/&gt; 
+&lt;/figure&gt;
+
 &lt;p&gt;It&amp;rsquo;s a notebook that has &lt;code&gt;K-&amp;gt;M, O-&amp;gt;Q, E-&amp;gt;G&lt;/code&gt; written on it.&lt;/p&gt;</description>
     </item>
     <item>

@@ -157,20 +157,35 @@ It&rsquo;s a notebook that has K-&gt;M, O-&gt;Q, E-&gt;G written on it.">
 
 <p>It&rsquo;s a notebook that has <code>K-&gt;M, O-&gt;Q, E-&gt;G</code> written on it.</p>
 <p>There&rsquo;s also a ciphertext.</p>
-<figure>
-    <img loading="lazy" src="/img/pythonchallenge/level1/level1_hints.jpg"
+<p>If you look carefully shifting <em>2 alphabets</em> from K gets you M, O gets you Q, E gets you G.</p>
+<pre tabindex="0"><code>K,L,M 
+O,P,Q 
+E,F,G 
+</code></pre><figure>
+    <img loading="lazy" src="/img/pythonchallenge/level1/level1_hints.png"
          alt="ciphertext"/> 
 </figure>
 
-<p>If you look carefully shifting <em>2 alphabets</em> from K gets you M, O gets you Q, E gets you G.</p>
-<p>K,L,M
-O,P,Q
-E,F,G</p>
 <p>That means shifting 2 characters from our ciphertext <code>g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.</code> will likely gives us the decipher.</p>
 <p>There is a famous substitution cipher called <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar_cipher</a> that&rsquo;s similar to the problem in level1.</p>
 <p>The only difference beteween Caesar cipher and the problem in level1 is that Caesar Cipher shifts 3 letters instead of 2.</p>
 <p>Another famous substitution called <a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a> is famous.</p>
 <p>ROT13 shifts 13 lettters as it says in the name.</p>
+<p>The <code>dec</code> function gets each character&rsquo;s ASCII value and subtracts a to get the index of the alphabet and adds <code>2</code>. this gives us the offset(how far it is away from a) and takes the remainder of it divided by <code>26</code>. you need to divide it by 26 because there are only 26 letters in the alphabets.
+<code>97</code> is the ASCII value for <code>'a'</code> so by adding the offset with <code>97</code> gives you the actual letters.</p>
+<p>I initially wrote the <code>dec</code> function like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dec</span>(cipher):
+</span></span><span style="display:flex;"><span>    decrypt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> cipher:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> c <span style="color:#f92672">in</span> letters:
+</span></span><span style="display:flex;"><span>            decrypt <span style="color:#f92672">+=</span> chr((ord(c) <span style="color:#f92672">-</span> ord(<span style="color:#e6db74">&#34;a&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">26</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">97</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            decrypt <span style="color:#f92672">+=</span> c
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> decrypt
+</span></span></code></pre></div><p>Many people said string concatenation is generally bad practice in Python.
+Especially if the string is long.</p>
+<p>Reading <a href="https://stackoverflow.com/questions/39675898/is-python-string-concatenation-bad-practice">this</a> post will give an detailed explanation.</p>
+<p>According to the post string concatenation is fine if the string is short but using <code>''.join()</code> is the better choice so I went with that.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> string 
 </span></span><span style="display:flex;"><span>letters <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_lowercase
 </span></span><span style="display:flex;"><span>
@@ -183,18 +198,13 @@ E,F,G</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
 </span></span><span style="display:flex;"><span>            decrypt<span style="color:#f92672">.</span>append(c)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(decrypt)
-</span></span></code></pre></div><p>The <code>dec</code> function gets each character&rsquo;s ASCII value and subtracts a to get the index of the alphabet and adds <code>2</code>. this gives us the offset(how far it is away from a) and takes the remainder of it divided by <code>26</code>. you need to divide it by 26 because there are only 26 letters in the alphabets.
-<code>97</code> is the ASCII value for <code>'a'</code> so by adding the offset with <code>97</code> gives you the actual letters.</p>
-<p>I initially wrote the <code>dec</code> function commented out. Many people say string concatenation is generally bad practice in Python.
-Especially if the string is long.</p>
-<p>Reading <a href="https://stackoverflow.com/questions/39675898/is-python-string-concatenation-bad-practice">this</a> post will give an detailed explanation.</p>
-<p>According to the post string concatenation is fine if the string is short but using <code>''.join()</code> is the better choice so I went with that.</p>
-<p>Running <code>1.py</code> gives us the decipher.</p>
-<p>The decipher looks like this</p>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(dec(&#34;map&#34;)) =&gt; ocr</span>
+</span></span></code></pre></div><p>The decipher looks like this</p>
 <p><code>i hope you didnt translate it by hand. thats what computers are for. doing it in by hand is inefficient and that's why this text is so long. using string.maketrans() is recommended. now apply on the url</code></p>
 <p>The decipher tells me to use <code>string.maketrans()</code> but because I&rsquo;ve never used <code>string.maketrans()</code> I decided not to.</p>
 <p>Since the URL for level1 is <a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a> I should do the 2 letter shift on the word <strong>map</strong>.</p>
-<p>Passing the string <code>map</code> to <code>1.py</code> gives you <code>ocr</code>.</p>
+<p>Passing <code>map</code> to the <code>dec</code> function gives you <code>ocr</code>.</p>
 <p>Changing the URL from <a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a> to <a href="http://www.pythonchallenge.com/pc/def/ocr.html">http://www.pythonchallenge.com/pc/def/ocr.html</a> gets you to level2.</p>
 <p>P.S you can also do this using shellscript.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&#39;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.&#34;</span> | tr a-z c-za-x
