@@ -6,7 +6,7 @@ cover:
     image: img/pythonchallenge/level0/calc.jpg
     alt: 'This is a post image'
     caption: 'calc.jpg'
-tags: ["html","css"]
+tags: ["Python","PythonChallenge"]
 categories: ["PythonChallenge"]
 ---
 
