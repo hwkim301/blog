@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Html on hwkim301</title>
-    <link>//localhost:38223/tags/html/</link>
+    <link>http://localhost:1313/tags/html/</link>
     <description>Recent content in Html on hwkim301</description>
     <generator>Hugo -- 0.147.5</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 02 Jul 2025 08:48:01 +0900</lastBuildDate>
-    <atom:link href="//localhost:38223/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/html/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Level0</title>
-      <link>//localhost:38223/posts/pythonchallenge/level0/</link>
+      <link>http://localhost:1313/posts/pythonchallenge/level0/</link>
       <pubDate>Wed, 02 Jul 2025 08:48:01 +0900</pubDate>
-      <guid>//localhost:38223/posts/pythonchallenge/level0/</guid>
+      <guid>http://localhost:1313/posts/pythonchallenge/level0/</guid>
       <description>&lt;p&gt;What is Python Challenge ?&lt;/p&gt;
 &lt;p&gt;Python challenge is a set of puzzles that can be solved by using Python.&lt;/p&gt;
 &lt;p&gt;Currently there are 33 levels.&lt;/p&gt;
@@ -23,9 +23,9 @@ Reading O&amp;rsquo;reilly books or learning from online courses would help you 
     </item>
     <item>
       <title>First</title>
-      <link>//localhost:38223/posts/first/</link>
+      <link>http://localhost:1313/posts/first/</link>
       <pubDate>Wed, 02 Jul 2025 08:41:40 +0900</pubDate>
-      <guid>//localhost:38223/posts/first/</guid>
+      <guid>http://localhost:1313/posts/first/</guid>
       <description>&lt;h1 id=&#34;this-is-a-heading-one&#34;&gt;This is a heading one&lt;/h1&gt;
 &lt;h2 id=&#34;this-is-a-heading-two&#34;&gt;This is a heading two&lt;/h2&gt;
 &lt;p&gt;This is a paragraph&lt;/p&gt;</description>

@@ -2,33 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:38223/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/tags/css/</loc>
+    <loc>http://localhost:1313/tags/css/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/tags/html/</loc>
+    <loc>http://localhost:1313/tags/html/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/posts/pythonchallenge/level0/</loc>
+    <loc>http://localhost:1313/posts/pythonchallenge/level0/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/categories/pythonchallenge/</loc>
+    <loc>http://localhost:1313/categories/pythonchallenge/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-07-02T08:48:01+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/posts/first/</loc>
+    <loc>http://localhost:1313/posts/second/</loc>
+    <lastmod>2025-07-02T08:47:18+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/first/</loc>
     <lastmod>2025-07-02T08:41:40+09:00</lastmod>
   </url><url>
-    <loc>//localhost:38223/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url>
 </urlset>
