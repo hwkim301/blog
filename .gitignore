@@ -1,0 +1,5 @@
+/public/
+/resources/_gen/
+.hugo_build.lock
+.DS_Store # (Optional, for macOS users)
+# node_modules/ # (If you use npm/yarn for CSS/JS processing)
