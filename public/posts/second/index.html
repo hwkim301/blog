@@ -141,10 +141,10 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-    </ul>  {# EXPLICITLY EXCLUDE DRAFTS #}                 {# SORT ASCENDING BY DATE #}
+    </ul> {# EXPLICITLY EXCLUDE DRAFTS #}             {# SORT ASCENDING BY DATE: OLDEST to NEWEST #}
 
 <div style="background: yellow; padding: 10px; margin: 10px 0;">
-    DEBUG: Pages in collection (Sorted ASCENDING):<br>
+    DEBUG: Pages in collection (Sorted ASCENDING, OLDEST to NEWEST):<br>
         - First (Date: 2025-07-02 08:41:40 &#43;0900 KST) (Path: /posts/first)<br>
         - Level0 (Date: 2025-07-02 08:48:01 &#43;0900 KST) (Path: /posts/pythonchallenge/0)<br>
         - Level1 (Date: 2025-07-02 12:44:22 &#43;0900 KST) (Path: /posts/pythonchallenge/1)<br>
@@ -289,6 +289,53 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 

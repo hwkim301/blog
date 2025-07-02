@@ -3,6 +3,17 @@ languageCode: en-us
 title: hwkim301
 theme: PaperMod
 
+
+menu:
+  main:
+    - name: "Home"
+      url: "/"
+      weight: 1
+    - name: "Search"
+      url: "/search/"
+      weight: 10 # This creates a link to your search page
+
+
 params:
   homeInfoParams:
     Title: 'Hello'
