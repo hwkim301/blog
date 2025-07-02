@@ -7,12 +7,16 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Level1 | hwkim301</title>
 <meta name="keywords" content="Python, PythonChallenge">
-<meta name="description" content="The URL for level1 changed from 274877906944.html to (http://www.pythonchallenge.com/pc/def/map.html).
+<meta name="description" content="The URL for level1 changed from 274877906944.html to map.html.
 As I said previously for it&rsquo;s good practice to check the HTML title first.
 The HTML title for level1 is What about making trans?
-Moving your cursor to the tab will show it the HTML title.
+Moving your cursor to the tab will show the HTML title.
 You can also view it as a HTML tag by right clicking and Inspect.
-I&rsquo;m also given an image map.jpg.
+I&rsquo;m also given an a scratch book.
+
+     
+
+
 It&rsquo;s a notebook that has K-&gt;M, O-&gt;Q, E-&gt;G written on it.">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/pythonchallenge/1/">
@@ -140,14 +144,24 @@ It&rsquo;s a notebook that has K-&gt;M, O-&gt;Q, E-&gt;G written on it.">
         </a>
         <figcaption>map.jpg</figcaption>
 </figure>
-  <div class="post-content"><p>The URL for level1 changed from <code>274877906944.html</code> to (<a href="http://www.pythonchallenge.com/pc/def/map.html)">http://www.pythonchallenge.com/pc/def/map.html)</a>.</p>
+  <div class="post-content"><p>The URL for level1 changed from <code>274877906944.html</code> to map.html.</p>
 <p>As I said previously for it&rsquo;s good practice to check the HTML title first.</p>
 <p>The HTML title for level1 is <em>What about making trans?</em></p>
-<p>Moving your cursor to the tab will show it the HTML title.
-You can also view it as a HTML tag by right clicking and Inspect.</p>
-<p>I&rsquo;m also given an image <a href="/1/map.jpg">map.jpg</a>.</p>
+<p>Moving your cursor to the tab will show the HTML title.</p>
+<p>You can also view it as a HTML tag by right clicking and Inspect.</p>
+<p>I&rsquo;m also given an a scratch book.</p>
+<figure>
+    <img loading="lazy" src="/img/pythonchallenge/level1/map.jpg"
+         alt="map"/> 
+</figure>
+
 <p>It&rsquo;s a notebook that has <code>K-&gt;M, O-&gt;Q, E-&gt;G</code> written on it.</p>
-<p>There&rsquo;s also a <a href="/1/level1_hints.png">ciphertext</a>.</p>
+<p>There&rsquo;s also a ciphertext.</p>
+<figure>
+    <img loading="lazy" src="/img/pythonchallenge/level1/level1_hints.jpg"
+         alt="ciphertext"/> 
+</figure>
+
 <p>If you look carefully shifting <em>2 alphabets</em> from K gets you M, O gets you Q, E gets you G.</p>
 <p>K,L,M
 O,P,Q
@@ -155,7 +169,7 @@ E,F,G</p>
 <p>That means shifting 2 characters from our ciphertext <code>g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.</code> will likely gives us the decipher.</p>
 <p>There is a famous substitution cipher called <a href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar_cipher</a> that&rsquo;s similar to the problem in level1.</p>
 <p>The only difference beteween Caesar cipher and the problem in level1 is that Caesar Cipher shifts 3 letters instead of 2.</p>
-<p>Another famous substitution cipher called <a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a> is famous.</p>
+<p>Another famous substitution called <a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a> is famous.</p>
 <p>ROT13 shifts 13 lettters as it says in the name.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> string 
 </span></span><span style="display:flex;"><span>letters <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_lowercase
@@ -179,10 +193,10 @@ Especially if the string is long.</p>
 <p>The decipher looks like this</p>
 <p><code>i hope you didnt translate it by hand. thats what computers are for. doing it in by hand is inefficient and that's why this text is so long. using string.maketrans() is recommended. now apply on the url</code></p>
 <p>The decipher tells me to use <code>string.maketrans()</code> but because I&rsquo;ve never used <code>string.maketrans()</code> I decided not to.</p>
-<p>Since the URL for level1 is (<a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a>) I should do the 2 letter shift on the word <strong>map</strong>.</p>
+<p>Since the URL for level1 is <a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a> I should do the 2 letter shift on the word <strong>map</strong>.</p>
 <p>Passing the string <code>map</code> to <code>1.py</code> gives you <code>ocr</code>.</p>
-<p>Changing the URL from (<a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a>) to (<a href="http://www.pythonchallenge.com/pc/def/ocr.html">http://www.pythonchallenge.com/pc/def/ocr.html</a>) gets you to level2.</p>
-<p>P.S you can also do this using shellscript</p>
+<p>Changing the URL from <a href="http://www.pythonchallenge.com/pc/def/map.html">http://www.pythonchallenge.com/pc/def/map.html</a> to <a href="http://www.pythonchallenge.com/pc/def/ocr.html">http://www.pythonchallenge.com/pc/def/ocr.html</a> gets you to level2.</p>
+<p>P.S you can also do this using shellscript.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr&#39;q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.&#34;</span> | tr a-z c-za-x
 </span></span></code></pre></div><p>If the letter is between <code>a-x</code> you can <code>2</code> letter shift it to <code>c-z</code>, but if the letter is <code>y</code> or <code>z</code> it needs to go back to <code>a</code> or <code>b</code> so the letters are changed rom all the letters except <code>y</code>,<code>z</code> where the original letters are.
 That&rsquo;s why you need the extra <code>a-x</code> after <code>c-z</code>.</p>
