@@ -56,7 +56,7 @@ From the title I can guess that this level shouldn't be that hard.
 
 Level0 has a picture of an old desktop PC 
 
-{{< figure src="/img/pythonchallenge/level0/calc.jpg" alt="desktop" width="640" height="480" >}}
+{{< figure src="/img/pythonchallenge/level0/calc.jpg" alt="desktop" >}}
 
 
 On the monitor there is a yellow rectangle with `2**38` written on it.
