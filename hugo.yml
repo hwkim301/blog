@@ -10,6 +10,9 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/hwkim301"
+  mainSections:
+    - posts 
+    - pythonchallenge
 
   cover:
     linkFullImages: true
@@ -22,6 +25,7 @@ params:
 
   ShowPostNavLinks: true
 
+  ShowCodeCopyButtons: true
 menu: 
   main:
     - identifier: categories

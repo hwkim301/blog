@@ -1,0 +1,32 @@
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Draft" "!=" true }}  {# EXPLICITLY EXCLUDE DRAFTS #}
+{{- $pages = $pages.ByDate }}                 {# SORT ASCENDING BY DATE #}
+
+<div style="background: yellow; padding: 10px; margin: 10px 0;">
+    DEBUG: Pages in collection (Sorted ASCENDING):<br>
+    {{- range $pages }}
+        - {{ .Title }} (Date: {{ .Date }}) (Path: {{ .Path }})<br>
+    {{- end }}
+</div>
+
+{{- if and (gt (len $pages) 1) (in $pages . ) }}
+<nav class="paginav">
+  {# The Previous Chronologically OLDER Post #}
+  {{- with $pages.Prev . }}  
+    <a class="prev" href="{{ .Permalink }}">
+      <span class="title">« {{ i18n "prev_page" }} (DEBUG: OLDER)</span>
+      <br>
+      <span>{{- .Title -}} (DEBUG Path: {{ .Path }}) (DEBUG Name: {{ .Name }})</span>
+    </a>
+  {{- end }}
+
+  {# The Next Chronologically NEWER Post #}
+  {{- with $pages.Next . }}  
+    <a class="next" href="{{ .Permalink }}">
+      <span class="title">{{ i18n "next_page" }} » (DEBUG: NEWER)</span>
+      <br>
+      <span>{{- .Title -}} (DEBUG Path: {{ .Path }}) (DEBUG Name: {{ .Name }})</span>
+    </a>
+  {{- end }}
+</nav>
+{{- end }}
