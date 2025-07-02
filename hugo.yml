@@ -1,4 +1,4 @@
-baseURL: "https://deluxe-rugelach-fbe9c3.netlify.app
+baseURL: "https://deluxe-rugelach-fbe9c3.netlify.app/" 
 languageCode: en-us
 title: hwkim301
 theme: PaperMod
@@ -22,17 +22,17 @@ params:
 
   ShowPostNavLinks: true
 
-menu:
+menu: 
   main:
     - identifier: categories
       name: Categories
       url: /categories/
-      weight: 10 
+      weight: 10
     - identifier: tags
       name: Tags
       url: /tags/
-      weight: 10 
+      weight: 10
     - identifier: archives
       name: Archives
       url: /archives/
-      weight: 10 
+      weight: 10
