@@ -6,21 +6,8 @@
     <description>Recent content in Html on hwkim301</description>
     <generator>Hugo -- 0.147.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jul 2025 08:48:01 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 02 Jul 2025 08:41:40 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/html/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Level0</title>
-      <link>http://localhost:1313/posts/pythonchallenge/level0/</link>
-      <pubDate>Wed, 02 Jul 2025 08:48:01 +0900</pubDate>
-      <guid>http://localhost:1313/posts/pythonchallenge/level0/</guid>
-      <description>&lt;p&gt;What is Python Challenge ?&lt;/p&gt;
-&lt;p&gt;Python challenge is a set of puzzles that can be solved by using Python.&lt;/p&gt;
-&lt;p&gt;Currently there are 33 levels.&lt;/p&gt;
-&lt;p&gt;IMHO Python Challenge is not for beginners who have never coded in Python before or have little experience in Python.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s for people who have some experience in Python but just aren&amp;rsquo;t super good.&lt;/p&gt;
-&lt;p&gt;If it&amp;rsquo;s your first time writing Python code I wouldn&amp;rsquo;t try to solve these problems.
-Reading O&amp;rsquo;reilly books or learning from online courses would help you more.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>First</title>
       <link>http://localhost:1313/posts/first/</link>
