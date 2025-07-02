@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>//localhost:38223/categories/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/tags/css/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/tags/html/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/posts/pythonchallenge/level0/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/posts/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/categories/pythonchallenge/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/tags/</loc>
+    <lastmod>2025-07-02T08:48:01+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/posts/first/</loc>
+    <lastmod>2025-07-02T08:41:40+09:00</lastmod>
+  </url><url>
+    <loc>//localhost:38223/archives/</loc>
+  </url>
+</urlset>

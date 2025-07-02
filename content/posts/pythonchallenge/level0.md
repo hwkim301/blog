@@ -3,7 +3,7 @@ date: '2025-07-02T08:48:01+09:00'
 draft: false
 title: 'Level0'
 cover: 
-    image: img/calc.jpg
+    image: img/pythonchallenge/level0/calc.jpg
     alt: 'This is a post image'
     caption: 'calc.jpg'
 tags: ["html","css"]
@@ -56,7 +56,7 @@ From the title I can guess that this level shouldn't be that hard.
 
 Level0 has a picture of an old desktop PC 
 
-{{< figure src="/img/calc.jpg" alt="desktop" width="640" height="480" >}}
+{{< figure src="/img/pythonchallenge/level0/calc.jpg" alt="desktop" width="640" height="480" >}}
 
 
 On the monitor there is a yellow rectangle with `2**38` written on it.
