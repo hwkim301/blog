@@ -115,7 +115,7 @@ print(pow(2, 38))
 `2**38` gives us **`274877906944`**.
 
 
-Changing the URL from [0.html](http://www.pythonchallenge.com/pc/def/0.html) to [274877906944.html](http://www.pythonchallenge.com/pc/def/0.html) takes you to level1.
+Changing the URL from [0.html](http://www.pythonchallenge.com/pc/def/0.html) to [274877906944.html](http://www.pythonchallenge.com/pc/def/274877906944.html) takes you to level1.
 
 
 I'll try to explain the code and how to solve these problems in detail as much as possible.
