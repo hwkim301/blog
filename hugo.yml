@@ -39,6 +39,10 @@ params:
   ShowCodeCopyButtons: true
 menu: 
   main:
+    - identifier: whoami
+      name: Who am I
+      url: /whoami/
+      weight: 1
     - identifier: categories
       name: Categories
       url: /categories/

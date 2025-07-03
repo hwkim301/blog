@@ -1,0 +1,15 @@
+{{ $birthdateRaw := .Page.Params.birthdate }}
+{{ $birthdate := $birthdateRaw | time.AsTime }}
+
+{{ $currentDate := now }}
+
+{{ $age := sub $currentDate.Year $birthdate.Year }}
+
+{{/* Calculate this year's birthday to compare against current date */}}
+{{ $thisYearBirthday := printf "%d-%02d-%02d" $currentDate.Year $birthdate.Month $birthdate.Day | time.AsTime }}
+
+{{/* Check if the birthday has passed this year. If not, subtract one from the age. */}}
+{{ if $currentDate.Before $thisYearBirthday }}
+    {{ $age = sub $age 1 }}
+{{ end }}
+{{ $age }}
