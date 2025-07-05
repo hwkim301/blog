@@ -3,26 +3,42 @@ languageCode: en-us
 title: hwkim301
 theme: PaperMod
 
+
+outputs:
+  home: ["HTML", "RSS", "JSON"]
+  
 menu: # Combined menu section
   main:
     - name: "Home"
       url: "/"
       weight: 1
-    - name: "Search"
-      url: "/search/"
-      weight: 10 # This creates a link to your search page
+
+    - name : "Blog"
+      identifier: "blog"
+      weight: 10
+
     - identifier: categories
       name: Categories
       url: /categories/
-      weight: 10
+      parent: "blog"
+      weight: 1
+
     - identifier: tags
       name: Tags
       url: /tags/
-      weight: 10
+      parent: "blog"
+      weight: 2
+
     - identifier: archives
       name: Archives
       url: /archives/
-      weight: 10
+      parent: "blog"
+      weight: 3
+    
+    - name: "Search"
+      url: "/search/"
+      weight: 20 # This creates a link to your search page
+
     - identifier: about
       name: About
       url: /about/
@@ -38,13 +54,20 @@ params:
   mainSections:
     - posts
     - pythonchallenge
+
+  enableSearch: false
+  
   cover:
-    linkFullImages: true
+    linkFullImages: false
+
   ShowBreadcrumbs: true
   ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowCodeCopyButtons: true
+
+  assets:
+  extendedCSS: true
 
 markup: 
   goldmark:

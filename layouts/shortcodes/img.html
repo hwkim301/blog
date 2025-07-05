@@ -1,0 +1,5 @@
+<img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "" }}"
+     {{ with .Get "width" }}width="{{ . }}"{{ end }}
+     {{ with .Get "height" }}height="{{ . }}"{{ end }}
+     {{ with .Get "class" }}class="{{ . }}"{{ end }}
+     loading="lazy">
