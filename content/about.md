@@ -1,8 +1,8 @@
 ---
-title: "Who am I"
-layout: "whoami"
-url: "/whoami/"
-summary: whoami
+title: "About"
+layout: "about"
+url: "/about/"
+summary: about
 birthdate: "2000-03-01"
 ---
 

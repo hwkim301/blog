@@ -1,10 +1,9 @@
-baseURL: "https://hwkim301.com" 
+baseURL: "https://hwkim301.com"
 languageCode: en-us
 title: hwkim301
 theme: PaperMod
 
-
-menu:
+menu: # Combined menu section
   main:
     - name: "Home"
       url: "/"
@@ -12,37 +11,6 @@ menu:
     - name: "Search"
       url: "/search/"
       weight: 10 # This creates a link to your search page
-
-
-params:
-  homeInfoParams:
-    Title: 'Hello'
-    Content: 'Welcome to my blog'
-  socialIcons:
-    - name: github
-      url: "https://github.com/hwkim301"
-  mainSections:
-    - posts 
-    - pythonchallenge
-
-  cover:
-    linkFullImages: true
-  
-  ShowBreadcrumbs: true
-
-  ShowReadingTime: true
-
-  ShowShareButtons: true
-
-  ShowPostNavLinks: true
-
-  ShowCodeCopyButtons: true
-menu: 
-  main:
-    - identifier: whoami
-      name: Who am I
-      url: /whoami/
-      weight: 1
     - identifier: categories
       name: Categories
       url: /categories/
@@ -55,3 +23,30 @@ menu:
       name: Archives
       url: /archives/
       weight: 10
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 10
+
+params:
+  homeInfoParams:
+    Title: 'Hello'
+    Content: 'Welcome to my blog'
+  socialIcons:
+    - name: github
+      url: "https://github.com/hwkim301"
+  mainSections:
+    - posts
+    - pythonchallenge
+  cover:
+    linkFullImages: true
+  ShowBreadcrumbs: true
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+
+markup: 
+  goldmark:
+    renderer:
+      unsafe: true
