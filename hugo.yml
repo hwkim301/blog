@@ -26,7 +26,7 @@ menu: # Combined menu section
     - identifier: about
       name: About
       url: /about/
-      weight: 10
+      weight: 30
 
 params:
   homeInfoParams:
