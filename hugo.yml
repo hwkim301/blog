@@ -69,6 +69,10 @@ params:
   assets:
   extendedCSS: true
 
+  single:
+    externalLinkInNewTab: true
+  links:
+    external_in_new_tab: true
 markup: 
   goldmark:
     renderer:
