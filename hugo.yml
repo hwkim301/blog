@@ -15,6 +15,7 @@ menu: # Combined menu section
 
     - name : "Blog"
       identifier: "blog"
+      url: "/posts/"
       weight: 10
 
     - identifier: categories
