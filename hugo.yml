@@ -47,8 +47,6 @@ menu: # Combined menu section
 
 params:
   homeInfoParams:
-    Title: 'Hello'
-    Content: 'Welcome to my blog'
   socialIcons:
     - name: github
       url: "https://github.com/hwkim301"
