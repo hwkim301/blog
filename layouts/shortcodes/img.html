@@ -1,5 +1,40 @@
-<img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "" }}"
-     {{ with .Get "width" }}width="{{ . }}"{{ end }}
-     {{ with .Get "height" }}height="{{ . }}"{{ end }}
-     {{ with .Get "class" }}class="{{ . }}"{{ end }}
-     loading="lazy">
+{{/* layouts/shortcodes/img.html */}}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $width := .Get "width" }}
+{{ $height := .Get "height" }}
+{{ $class := .Get "class" | default "" }}
+
+{{ $image := "" }}
+{{ if or (hasPrefix $src "/") (hasPrefix $src "http") }}
+  {{/* Handle images in static folder or external URLs */}}
+  {{ $image = resources.Get $src }}
+{{ else }}
+  {{/* Assume page bundle resource */}}
+  {{ $image = .Page.Resources.GetMatch $src }}
+{{ end }}
+
+{{ if $image }}
+  {{ $options := "" }}
+  {{ if $width }}
+    {{ $options = printf "%dx" $width }}
+  {{ end }}
+  {{ if $height }}
+    {{ if $options }}
+      {{ $options = printf "%s%dx" $options $height }}
+    {{ else }}
+      {{ $options = printf "x%d" $height }}
+    {{ end }}
+  {{ end }}
+
+  {{ if $options }}
+    {{ $processedImage := $image.Resize $options }}
+    <img src="{{ $processedImage.RelPermalink }}" alt="{{ $alt }}" width="{{ $processedImage.Width }}" height="{{ $processedImage.Height }}" class="{{ $class }}">
+  {{ else }}
+    {{/* If no width/height specified, use original or just a standard img tag */}}
+    <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}" class="{{ $class }}">
+  {{ end }}
+{{ else }}
+  {{/* Fallback for images not found or other issues */}}
+  <p>Image not found: {{ $src }}</p>
+{{ end }}

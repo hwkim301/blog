@@ -45,6 +45,14 @@ menu: # Combined menu section
       url: /about/
       weight: 30
 
+
+module:
+  mounts:
+    - source: static 
+      target: static 
+    - source: img 
+      target: static/img
+
 params:
   homeInfoParams:
   socialIcons:
@@ -58,6 +66,7 @@ params:
   
   cover:
     linkFullImages: false
+    responsiveImages: true
 
   ShowBreadcrumbs: true
   ShowReadingTime: true
