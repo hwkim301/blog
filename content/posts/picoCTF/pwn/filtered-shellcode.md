@@ -480,10 +480,6 @@ int main(int argc, char *argv[]) {
 Thanks to Professor Martin Carlisle and bernie6401 for their writeup. 
 
 
-{{< youtube _yW5QTVFGl8 >}}
-
-
-https://hackmd.io/@SBK6401/HJ0Yn79ih 
-
-
 Probably wouldn't have solved it without their help. 
+
+{{< youtube _yW5QTVFGl8 >}}
