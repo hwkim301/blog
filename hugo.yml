@@ -2,7 +2,7 @@ baseURL: "https://hwkim301.com"
 languageCode: en-us
 title: hwkim301
 theme: PaperMod
-
+capitalizeListTitles: false
 
 outputs:
   home: ["HTML", "RSS", "JSON"]
