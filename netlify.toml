@@ -4,4 +4,4 @@
   command = "hugo --gc --minify"
 
 [build.environment]
-  HUGO_VERSION = "0.148.1+extended" # Make sure this matches your local 'hugo version' output
+  HUGO_VERSION = "0.148.1" # Make sure this matches your local 'hugo version' output
