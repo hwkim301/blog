@@ -1,0 +1,19 @@
+{{ $imgPath := .Get "src" }}
+{{ $width := .Get "width" | default "600x" }}
+{{ $options := .Get "options" | default "" }}
+{{ $altText := .Get "alt" | default "" }}
+
+<p>DEBUG: Requested Image Path: {{ $imgPath }}</p>
+<p>DEBUG: Requested Width: {{ $width }}</p>
+<p>DEBUG: Requested Options: {{ $options }}</p>
+
+{{ with resources.Get $imgPath }}
+    <p>DEBUG: Image Resource Found! Path: {{ .Permalink }}</p>
+    {{ $resizedImage := .Resize (printf "%s %s" $width $options) }}
+    <p>DEBUG: Resized Image Path: {{ $resizedImage.RelPermalink }}</p>
+    <img loading="eager" src="{{ $resizedImage.RelPermalink }}" width="{{ $resizedImage.Width }}" height="{{ $resizedImage.Height }}" alt="{{ $altText }}">
+{{ else }}
+    <p style="color: red;">DEBUG: ERROR: Image Resource NOT Found or Not Processable for path: {{ $imgPath }}</p>
+    {{/* Fallback if image not found as a resource */}}
+    <img loading="eager" src="{{ $imgPath | relURL }}" alt="{{ $altText }}">
+{{ end }}

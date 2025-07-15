@@ -1,0 +1,41 @@
+/* assets/css/custom.css */
+
+/* Your existing rules for pre and p tags */
+article pre {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
+}
+
+.post-content pre,
+.content pre {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+article p {
+    margin-bottom: 1.5em;
+}
+
+.post-content p,
+.content p {
+    margin-bottom: 1.5em;
+}
+
+/* --- FORCED COVER IMAGE RULE (FOR TESTING ONLY) --- */
+/* This uses !important to override any other conflicting rules.
+   If this works, it confirms a specificity problem. */
+figure.entry-cover img { /* Using figure.entry-cover for higher specificity if needed */
+    max-width: 600px !important; /* Force max-width */
+    height: auto !important;     /* Force height to auto to maintain aspect ratio */
+    display: block !important;   /* Ensure it's a block element */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Ensure your media query also matches this new specificity */
+@media (max-width: 768px) {
+    figure.entry-cover img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}

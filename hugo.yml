@@ -50,10 +50,13 @@ module:
   mounts:
     - source: static 
       target: static 
-    - source: img 
-      target: static/img
 
 params:
+  defaultTheme: auto 
+  customCSS: ["css/custom.css"]
+  cover: 
+    width: 400
+    quality: 100
   homeInfoParams:
   socialIcons:
     - name: github
