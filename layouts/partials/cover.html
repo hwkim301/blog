@@ -1,126 +1,49 @@
-{{- with .cxt}} {{/* Apply proper context from dict. Closes on LAST line of file */}}
-{{- if (and .Params.cover.image (not $.isHidden)) }} {{/* Checks if cover image exists and is not hidden. Closes before </figure> */}}
+{{- with .cxt}}
+{{- if (and .Params.cover.image (not $.isHidden)) }}
 <figure class="entry-cover{{ with .Params.cover.class }} {{ . }}{{ end }}">
     {{- $loading := cond $.IsSingle "eager" "lazy" }}
     {{- $addLink := (and site.Params.cover.linkFullImages $.IsSingle) }}
-    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
     {{- $alt := (.Params.cover.alt | default .Params.cover.caption | plainify) }}
-    {{- $responsiveImages := (.Params.cover.responsiveImages | default site.Params.cover.responsiveImages) | default true }}
+    {{- $imagePath := .Params.cover.image -}}
 
-    {{- $pageBundleCover := (.Resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
-    {{- $globalResourcesCover := (resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
-    {{- $cover := (or $pageBundleCover $globalResourcesCover)}}
-
-    {{- /* We are not using the .Param.cover.relative to decide the location of image */}}
-    {{- /* If we have the image in pageBundle or globalResources we can process the image */}}
-
-    {{- $sizes := (slice "360" "480" "720" "1080" "1500") }}
-    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
-    {{- if hugo.IsExtended -}} {{/* Closes at line below */}}
-        {{- $processableFormats = $processableFormats | append "webp" -}}
-    {{- end -}} {{/* END hugo.IsExtended */}}
-
-    {{- $imgdl := (.Params.cover.image) | absURL }}
-    {{- if $cover -}} {{/* Checks if a resource image was found. Closes at line below */}}
-        {{- $imgdl = $cover.Permalink }}
-    {{- end -}} {{/* END if $cover (for $imgdl) */}}
-
-    {{- /* START Custom Link Logic Integration */}}
+    {{- /* Link logic (as before) */}}
     {{- $customLinkURL := .Params.cover.link_url -}}
     {{- $customLinkTarget := .Params.cover.link_target | default "_self" -}}
-
     {{- $finalLinkURL := "" -}}
     {{- $finalLinkTarget := "" -}}
-
-    {{- if $customLinkURL -}} {{/* Closes on next "else if" or the 'END custom link' end */}}
+    {{- if $customLinkURL -}}
         {{- $finalLinkURL = $customLinkURL -}}
         {{- $finalLinkTarget = $customLinkTarget -}}
     {{- else if $addLink -}}
-        {{- $finalLinkURL = $imgdl -}}
+        {{- $finalLinkURL = $imagePath -}}
         {{- $finalLinkTarget = "_blank" -}}
-    {{- end -}} {{/* END if $customLinkURL / else if $addLink */}}
+    {{- end -}}
 
-    {{- if $finalLinkURL -}} {{/* Checks if a link URL was determined. Closes before 'END Custom Link Integration' comment */}}
+    {{- if $finalLinkURL -}}
         <a href="{{ $finalLinkURL | relURL }}" target="{{ $finalLinkTarget }}" rel="noopener noreferrer">
-    {{- end }} {{/* END if $finalLinkURL (for <a>) */}}
-    {{- /* END Custom Link Integration */}}
+    {{- end }}
 
-    {{- if $cover -}} {{/* Main image processing block. Closes before the last 'else' for external images */}}
-        {{- /* i.e it is present in page bundle or global resources */}}
-        {{- if (and (in $processableFormats $cover.MediaType.SubType) ($responsiveImages) (eq $prod true)) }} {{/* Checks if image is processable and responsive. Closes with its own 'end' */}}
-            {{- /* --- START NEW MODIFICATION FOR WIDTH/HEIGHT CONTROL --- */}}
-            {{- $defaultMaxPx := 800 -}} /* Default max width/height if not specified */
-            {{- $quality := 75 -}} /* Optional: set JPEG quality (e.g., 75-90) */
+    {{/* This is the crucial part for CSS resizing */}}
+    {{- if $imagePath -}}
+        <img loading="{{ $loading }}"
+             src="{{ $imagePath | relURL }}"
+             alt="{{ $alt }}"
+             class="cover-image"> {{/* Make sure this class is present */}}
+    {{- else -}}
+        <p>Cover image path not specified in front matter.</p>
+    {{- end -}}
 
-            {{- $userMaxWidth := .Params.cover.max_width_px | default $defaultMaxPx -}}
-            {{- $userMaxHeight := .Params.cover.max_height_px | default $defaultMaxPx -}}
-
-            {{- $processedImage := false -}} {{/* DECLARE $processedImage here so it's in scope! */}}
-            {{- $finalResizeOption := "" -}}
-
-            {{- if and (.Params.cover.max_width_px) (.Params.cover.max_height_px) -}}
-                {{- /* If both max width and height provided, use Fit to constrain within box */ -}}
-                {{- $finalResizeOption = printf "%dx%d" $userMaxWidth $userMaxHeight -}}
-                {{- $processedImage = $cover.Fit (printf "%s q%d" $finalResizeOption $quality) -}} {{/* Use = for assignment */}}
-            {{- else if .Params.cover.max_width_px -}}
-                {{- /* If only max width provided, resize by width */ -}}
-                {{- $finalResizeOption = printf "%dx" $userMaxWidth -}}
-                {{- $processedImage = $cover.Resize (printf "%s q%d" $finalResizeOption $quality) -}} {{/* Use = for assignment */}}
-            {{- else if .Params.cover.max_height_px -}}
-                {{- /* If only max height provided, resize by height */ -}}
-                {{- $finalResizeOption = printf "x%d" $userMaxHeight -}}
-                {{- $processedImage = $cover.Resize (printf "%s q%d" $finalResizeOption $quality) -}} {{/* Use = for assignment */}}
-            {{- else -}}
-                {{- /* Fallback to default max width if no custom dimensions provided in front matter */ -}}
-                {{- $finalResizeOption = printf "%dx" $defaultMaxPx -}}
-                {{- $processedImage = $cover.Resize (printf "%s q%d" $finalResizeOption $quality) -}} {{/* Use = for assignment */}}
-            {{- end -}}
-
-            {{- /* Generate srcset based on a calculated max dimension if it was fit */ -}}
-            {{- $srcsetParts := slice -}}
-            {{- $primaryDisplayWidth := $processedImage.Width -}} {{/* THIS IS THE LINE THAT WAS CAUSING THE ERROR */}}
-            {{- $primaryDisplayHeight := $processedImage.Height -}}
-
-            {{- range $size := $sizes -}} {{/* Loop for srcset sizes. Closes on next line with 'end' */}}
-                {{- /* Ensure generated sizes don't exceed the final displayed width of the processed image */ -}}
-                {{- $currentSize := math.Min (int $size) $primaryDisplayWidth -}}
-                {{- $currentSize = math.Min $currentSize $cover.Width -}}
-
-                {{- if (gt $currentSize 0) -}}
-                    {{- $processedSrc := $cover.Resize (printf "%sx q%d" $currentSize $quality) -}}
-                    {{- $srcsetParts = $srcsetParts | append (printf "%s %sw" $processedSrc.Permalink $currentSize) -}}
-                {{- end -}}
-            {{- end -}} {{/* END range $size */}}
-            {{- $srcsetParts = $srcsetParts | append (printf "%s %dw" $processedImage.Permalink $processedImage.Width) -}}
-
-            <img loading="{{$loading}}"
-                srcset='{{ delimit (uniq $srcsetParts) ", " }}'
-                src="{{ $processedImage.Permalink }}"
-                sizes="(min-width: {{ $primaryDisplayWidth }}px) {{ $primaryDisplayWidth }}px, 100vw"
-                width="{{ $primaryDisplayWidth }}" height="{{ $primaryDisplayHeight }}"
-                alt="{{ $alt }}">
-            {{- /* --- END NEW MODIFICATION FOR WIDTH/HEIGHT CONTROL --- */}}
-        {{- else }}{{/* Unprocessable internal image (e.g., SVG, or responsiveImages=false). Closes with its own 'end' */}}
-            {{- /* Apply a direct max-width style, robustly checking $cover.Width */ -}}
-            <img loading="{{ $loading }}" src="{{ $imgdl }}" alt="{{ $alt }}"
-                 style="max-width: {{ if and $cover.Width (gt $cover.Width 0) }}{{ (math.Min $cover.Width 800) }}px{{ else }}100%{{ end }}; height: auto;">
-        {{- end }} {{/* END if (and (in $processableFormats...)) / else */}}
-    {{- else }} {{/* This block handles external images, or if resources.Get failed entirely for cover.image */}}
-        <img loading="{{ $loading }}" src="{{ $imgdl }}" alt="{{ $alt }}"
-             style="max-width: 800px; height: auto;">
-    {{- end }} {{/* END if $cover (main image processing block) / else */}}
-
-    {{- if $finalLinkURL -}} {{/* Checks if an <a> tag was opened. Closes with its own 'end' */}}
+    {{- if $finalLinkURL -}}
         </a>
-    {{- end -}} {{/* END if $finalLinkURL (for <a> tag) */}}
+    {{- end -}}
 
-    {{- /*  Display Caption  */}}
-    {{- if $.IsSingle }} {{/* Closes with its own 'end' */}}
-        {{- with .Params.cover.caption -}} {{/* Closes with its own 'end' */}}
+    {{- /* Caption logic (as before) */}}
+    {{- if $.IsSingle }}
+        {{- with .Params.cover.caption -}}
             <figcaption>{{ . | markdownify }}</figcaption>
-        {{- end }} {{/* END with .Params.cover.caption */}}
-    {{- end }} {{/* END if $.IsSingle */}}
+        {{- end }}
+    {{- end }}
 
 </figure>
-{{- end }}{{/* END if (and .Params.cover.image (not $.isHidden)) */}}
-{{- end -}}{{/* END with .cxt */}}
+{{- end }}
+{{- end -}}

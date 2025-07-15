@@ -1,0 +1,48 @@
+{{/*
+  layouts/shortcodes/image-resize.html
+  Usage: {{< image-resize src="path/to/image.jpg" width="400" height="600" alt="Alt text" >}}
+  - src: Path to the image relative to the assets/ folder (e.g., "img/my-image.jpg")
+  - width: Desired maximum width in pixels (optional)
+  - height: Desired maximum height in pixels (optional)
+  - alt: Alt text for the image (optional)
+  - quality: JPEG quality (default 75, optional)
+*/}}
+{{- $src := .Get "src" -}}
+{{- $width := .Get "width" -}}
+{{- $height := .Get "height" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $quality := .Get "quality" | default 75 -}}
+
+{{- if not $src -}}
+  {{- errorf "image-resize shortcode: 'src' parameter is required." -}}
+{{- end -}}
+
+{{- $image := resources.Get $src -}}
+
+{{- if not $image -}}
+  {{- errorf "image-resize shortcode: Image not found at path '%s'." $src -}}
+{{- end -}}
+
+{{- $processedImage := $image -}}
+{{- $resizeOption := "" -}}
+
+{{- if and $width $height -}}
+    {{- $resizeOption = printf "%dx%d" ($width | int) ($height | int) -}}
+    {{- $processedImage = $image.Fit (printf "%s q%d" $resizeOption ($quality | int)) -}}
+{{- else if $width -}}
+    {{- $resizeOption = printf "%dx" ($width | int) -}}
+    {{- $processedImage = $image.Resize (printf "%s q%d" $resizeOption ($quality | int)) -}}
+{{- else if $height -}}
+    {{- $resizeOption = printf "x%d" ($height | int) -}}
+    {{- $processedImage = $image.Resize (printf "%s q%d" $resizeOption ($quality | int)) -}}
+{{- end -}}
+
+{{- if $processedImage -}}
+    <img src="{{ $processedImage.Permalink }}"
+         width="{{ $processedImage.Width }}"
+         height="{{ $processedImage.Height }}"
+         alt="{{ $alt }}"
+         loading="lazy">
+{{- else -}}
+    {{- errorf "image-resize shortcode: Failed to process image '%s'." $src -}}
+{{- end -}}

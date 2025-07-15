@@ -8,6 +8,7 @@ cover:
     link_url: "https://play.picoctf.org/practice/challenge/184?category=6&difficulty=3&page=2&retired=0"
     caption: 'picoCTF'
 tags: ["picoCTF","pwn"]
+comments: true
 ---
 
 

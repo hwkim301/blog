@@ -1,0 +1,30 @@
+{{ if .Params.comments | default $.Site.Params.comments }}
+  {{ if eq $.Site.Params.commentsProvider "utterances" }}
+    <script src="https://utteranc.es/client.js"
+            repo="[ENTER REPO HERE]"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+  {{ else if eq $.Site.Params.commentsProvider "giscus" }}
+    <script src="https://giscus.app/client.js"
+            data-repo="{{ $.Site.Params.giscus.repo }}"
+            data-repo-id="{{ $.Site.Params.giscus.repo_id }}"
+            data-category="{{ $.Site.Params.giscus.category }}"
+            data-category-id="{{ $.Site.Params.giscus.category_id }}"
+            data-mapping="{{ $.Site.Params.giscus.mapping }}"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="{{ $.Site.Params.giscus.theme }}"
+            data-lang="{{ $.Site.Params.giscus.language_code }}"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+    </script>
+  {{ else if eq $.Site.Params.commentsProvider "disqus" }}
+    {{ template "_internal/disqus.html" . }}
+  {{ end }}
+{{ end }}
