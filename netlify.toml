@@ -1,0 +1,7 @@
+# netlify.toml (create this file in your project root if it doesn't exist)
+[build]
+  publish = "public"
+  command = "hugo --gc --minify"
+
+[build.environment]
+  HUGO_VERSION = "0.148.1+extended" # Make sure this matches your local 'hugo version' output
