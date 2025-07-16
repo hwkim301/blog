@@ -52,11 +52,12 @@ module:
       target: static 
 
 params:
+  cover:
+    linkFullImages: true
+    responsiveImages: true
+
   defaultTheme: auto 
   customCSS: ["css/custom.css"]
-  cover: 
-    width: 400
-    quality: 100
   homeInfoParams:
   socialIcons:
     - name: github
@@ -67,10 +68,6 @@ params:
 
   enableSearch: false
   
-  cover:
-    linkFullImages: false
-    responsiveImages: true
-
   ShowBreadcrumbs: true
   ShowReadingTime: true
   ShowShareButtons: true
