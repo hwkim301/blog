@@ -1,0 +1,105 @@
+{{- with .cxt}} {{/* Apply proper context from dict */}}
+{{- if (and .Params.cover.image (not $.isHidden)) }}
+<figure class="entry-cover">
+    {{- $loading := cond $.IsSingle "eager" "lazy" }}
+    {{- $addLink := (and site.Params.cover.linkFullImages $.IsSingle) }}
+    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+    {{- $alt := (.Params.cover.alt | default .Params.cover.caption | plainify) }}
+    {{- $responsiveImages := (.Params.cover.responsiveImages | default site.Params.cover.responsiveImages) | default true }}
+
+    {{- $pageBundleCover := (.Resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
+    {{- $globalResourcesCover := (resources.ByType "image").GetMatch (printf "*%s*" (.Params.cover.image)) }}
+    {{- $cover := (or $pageBundleCover $globalResourcesCover)}}
+    {{- /* We are not using the .Param.cover.relative to decide the location of image */}}
+    {{- /* If we have the image in pageBundle or globalResources we can process the image */}}
+
+    {{- $sizes := (slice "360" "480" "720" "1080" "1500") }}
+    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+    {{- if hugo.IsExtended -}}
+        {{- $processableFormats = $processableFormats | append "webp" -}}
+    {{- end -}}
+
+    {{- $imgdl := (.Params.cover.image) | absURL }}
+    {{- if $cover -}}
+        {{- $imgdl = $cover.Permalink }}
+    {{- end -}}
+
+    {{- $finalLink := $imgdl -}}  {{/* Start with image's own URL as default */}}
+    {{- if .Params.cover.link_url -}} {{/* If a specific link_url is provided in front matter... */}}
+        {{- $finalLink = .Params.cover.link_url -}} {{/* ... then use that URL */}}
+    {{- end -}}
+
+    {{- if $addLink }}
+        <a href="{{ $finalLink | safeURL }}" target="_blank" rel="noopener noreferrer">
+    {{- end }}
+
+    {{- $targetWidth := .Params.cover.width | default 720 }}  {{/* NEW LINE: Get desired width, default to 720px */}}
+    {{- $targetHeight := .Params.cover.height | default "" }} {{/* NEW LINE: Get desired height */}}
+
+    {{- if $cover -}}
+        {{/* i.e it is present in page bundle */}}
+        {{- if (and (in $processableFormats $cover.MediaType.SubType) ($responsiveImages) (eq $prod true)) }}
+            {{- $resizedSrcset := "" -}}
+            {{- $resizedMainImage := $cover -}}
+
+            {{- if $targetWidth -}}
+                {{- $resizeOption := "" -}}
+                {{- if $targetHeight -}}
+                    {{- $resizeOption = printf "%dx%d" $targetWidth $targetHeight -}}
+                {{- else -}}
+                    {{- $resizeOption = printf "%dx" $targetWidth -}}
+                {{- end -}}
+                {{- $resizedMainImage = $cover.Resize $resizeOption -}}
+                {{- /* Ensure srcset also respects desired width if it's smaller than original sizes */}}
+                {{- $newSizes := slice -}}
+                {{- range $size := $sizes -}}
+                    {{- if (le $size $targetWidth) -}}
+                        {{- $newSizes = $newSizes | append $size -}}
+                    {{- end -}}
+                {{- end -}}
+                {{- if gt (len $newSizes) 0 -}}
+                    {{- $resizedSrcset = "" -}}
+                    {{- range $size := $newSizes -}}
+                        {{- $resizedSrcset = printf "%s %s %sw," $resizedSrcset (($cover.Resize (printf "%sx" $size)).Permalink) $size -}}
+                    {{- end -}}
+                    {{- $resizedSrcset = printf "%s %s %dw" $resizedSrcset $resizedMainImage.Permalink $resizedMainImage.Width -}}
+                {{- else -}}
+                    {{- $resizedSrcset = printf "%s %dw" $resizedMainImage.Permalink $resizedMainImage.Width -}}
+                {{- end -}}
+            {{- else -}}
+                {{- /* Original srcset generation if no targetWidth */ -}}
+                {{- range $size := $sizes -}}
+                    {{- if (ge $cover.Width $size) }}
+                        {{- $resizedSrcset = printf "%s %s %sw," $resizedSrcset (($cover.Resize (printf "%sx" $size)).Permalink) $size }}
+                    {{- end }}
+                {{- end }}
+                {{- $resizedSrcset = printf "%s %s %dw" $resizedSrcset ($cover.Permalink) ($cover.Width) }}
+            {{- end -}}
+
+            <img loading="{{$loading}}"
+                srcset='{{ $resizedSrcset }}'
+                src="{{ $resizedMainImage.Permalink }}"
+                sizes="(min-width: 768px) 720px, 100vw"
+                width="{{ $resizedMainImage.Width }}" height="{{ $resizedMainImage.Height }}"
+                alt="{{ $alt }}">
+        {{- else }}{{/* Unprocessable image or responsive images disabled */}}
+            <img loading="{{ $loading }}" src="{{ $imgdl }}" alt="{{ $alt }}">
+        {{- end }}
+    {{- else }}
+        {{- /* For absolute urls and external links, no img processing here */}}
+        <img loading="{{ $loading }}" src="{{ $imgdl }}" alt="{{ $alt }}">
+    {{- end }}
+
+    {{- if $addLink }}
+        </a>
+    {{- end -}}
+
+    {{- /*  Display Caption  */}}
+    {{- if $.IsSingle }}
+        {{ with .Params.cover.caption -}}
+            <figcaption>{{ . | markdownify }}</figcaption>
+        {{- end }}
+    {{- end }}
+</figure>
+{{- end }}{{/* End image */}}
+{{- end -}}{{/* End context */ -}}

@@ -2,6 +2,7 @@
 {{ $width := .Get "width" | default "600x" }}
 {{ $options := .Get "options" | default "" }}
 {{ $altText := .Get "alt" | default "" }}
+{{ $linkUrl := .Get "link_url" }}
 
 <p>DEBUG: Requested Image Path: {{ $imgPath }}</p>
 <p>DEBUG: Requested Width: {{ $width }}</p>
