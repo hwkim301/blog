@@ -1,0 +1,17 @@
+/* assets/css/extended.css */
+
+.entry-cover img {
+    /* This keeps the image responsive on smaller screens */
+    width: 100%;
+    height: auto;
+
+    /* This is the key for limiting its size on larger screens */
+    max-width: 600px; /* Adjust this value (e.g., 600px, 800px, 900px) */
+
+    /* Optional: Center the image if it doesn't take 100% width */
+    display: block;
+    margin: 0 auto;
+
+    /* Preserve existing border-radius if it's there, or override if needed */
+    border-radius: var(--radius); /* Or a fixed value like 8px */
+}

@@ -57,7 +57,6 @@ params:
     responsiveImages: true
 
   defaultTheme: auto 
-  customCSS: ["css/custom.css"]
   homeInfoParams:
   socialIcons:
     - name: github
