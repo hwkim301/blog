@@ -1,0 +1,35 @@
+{{- if (and .Params.cover.image (not .isHidden)) }}
+<figure class="entry-cover">
+    {{- $loading := cond .IsSingle "eager" "lazy" }}
+    {{- $alt := (.Params.cover.alt | default .Params.cover.caption | plainify) }}
+    {{- $addLink := .Params.cover.link_url }}
+
+    {{- $coverPath := .Params.cover.image }}
+    {{- $cover := resources.Get $coverPath }}
+    {{- if $cover }}
+        {{- $resized := $cover.Resize "600x" }}
+        {{- if $addLink }}
+        <a href="{{ $addLink }}" target="{{ .Params.cover.link_target | default "_blank" }}" rel="noopener noreferrer">
+            <img loading="{{$loading}}" src="{{ $resized.RelPermalink }}" alt="{{ $alt }}">
+        </a>
+        {{- else }}
+            <img loading="{{$loading}}" src="{{ $resized.RelPermalink }}" alt="{{ $alt }}">
+        {{- end }}
+    {{- else }}
+        <!-- fallback to static path if not found in assets -->
+        {{- if $addLink }}
+        <a href="{{ $addLink }}" target="{{ .Params.cover.link_target | default "_blank" }}" rel="noopener noreferrer">
+            <img loading="{{$loading}}" src="{{ .Params.cover.image | absURL }}" alt="{{ $alt }}">
+        </a>
+        {{- else }}
+            <img loading="{{$loading}}" src="{{ .Params.cover.image | absURL }}" alt="{{ $alt }}">
+        {{- end }}
+    {{- end }}
+
+    {{- if .IsSingle }}
+    {{ with .Params.cover.caption -}}
+    <figcaption>{{ . | markdownify }}</figcaption>
+    {{- end }}
+    {{- end }}
+</figure>
+{{- end -}}
