@@ -21,21 +21,28 @@ article p {
     margin-bottom: 1.5em;
 }
 
-/* --- FORCED COVER IMAGE RULE (FOR TESTING ONLY) --- */
-/* This uses !important to override any other conflicting rules.
-   If this works, it confirms a specificity problem. */
-figure.entry-cover img { /* Using figure.entry-cover for higher specificity if needed */
-    max-width: 600px !important; /* Force max-width */
-    height: auto !important;     /* Force height to auto to maintain aspect ratio */
-    display: block !important;   /* Ensure it's a block element */
-    margin-left: auto !important;
-    margin-right: auto !important;
+/* --- COVER IMAGE RESIZE RULE --- */
+figure.entry-cover img,
+.entry-cover img {
+    max-width: 400px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: unset !important;
 }
 
-/* Ensure your media query also matches this new specificity */
 @media (max-width: 768px) {
-    figure.entry-cover img {
+    figure.entry-cover img,
+    .entry-cover img {
         max-width: 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
         height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: unset !important;
     }
 }

@@ -52,6 +52,7 @@ module:
       target: static 
 
 params:
+  env: production
   cover:
     linkFullImages: true
     responsiveImages: true
