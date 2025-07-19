@@ -62,7 +62,7 @@ module:
 params:
   env: production
   cover:
-    linkFullImages: false
+    linkFullImages: true
     responsiveImages: true
 
   defaultTheme: auto 

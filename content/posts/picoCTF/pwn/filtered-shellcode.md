@@ -482,7 +482,8 @@ Thanks to professor Martin Carlisle and bernie6401 for their writeup.
 
 
 I probably wouldn't have solved it without their help. 
-<br>
+
 {{< youtube _yW5QTVFGl8 >}}
 <br>
+
 https://hackmd.io/@SBK6401/HJ0Yn79ih
