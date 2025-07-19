@@ -5,7 +5,11 @@ theme: PaperMod
 capitalizeListTitles: false
 
 outputs:
-  home: ["HTML", "RSS", "JSON"]
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
   
 menu: # Combined menu section
   main:
@@ -48,13 +52,17 @@ menu: # Combined menu section
 
 module:
   mounts:
-    - source: static 
-      target: static 
+    - source: content
+      target: content
+    - source: static
+      target: static
+    - source: assets
+      target: assets
 
 params:
   env: production
   cover:
-    linkFullImages: true
+    linkFullImages: false
     responsiveImages: true
 
   defaultTheme: auto 
@@ -66,8 +74,10 @@ params:
     - posts
     - pythonchallenge
 
-  enableSearch: false
-  
+  enableSearch: true
+  enableSearchIndex: true
+  enableSearchAutocomplete: true
+
   ShowBreadcrumbs: true
   ShowReadingTime: true
   ShowShareButtons: true
@@ -81,7 +91,20 @@ params:
     externalLinkInNewTab: true
   links:
     external_in_new_tab: true
-markup: 
-  goldmark:
+  
+  markup:
+    goldmark:
     renderer:
       unsafe: true
+
+  defaultContentLanguage: "en"
+  defaultContentLanguageInSubdir: true
+
+  Languages:
+    - languageName: "English"
+      languageCode: "en"
+      contentDir: "content/en"
+
+    - languageName: "한국어"
+      languageCode: "ko"
+      contentDir: "content/ko"

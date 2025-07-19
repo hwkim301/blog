@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main class="homepage">
+  {{ with .RawContent }}
+    <div class="post-content">
+      {{ . | markdownify }}
+    </div>
+  {{ else }}
+    <h1>Welcome!</h1>
+    <p>This is your custom homepage. Edit <code>content/_index.md</code> to change this text.</p>
+  {{ end }}
+</main>
+{{ end }}

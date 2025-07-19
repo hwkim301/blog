@@ -2,8 +2,9 @@
 date: "2025-07-15T13:22:16+09:00"
 draft: false
 title: "있는 그대로 멕시코"
+ShowToc: true
 cover:
-  image: img/books/mexico.jpg
+  image: cover.jpg
   alt: "책 표지"
   link_url: "https://www.yes24.com/product/goods/121577523"
   link_target: "_blank"
@@ -106,13 +107,13 @@ Colorado는 스페인어로, 붉은색으로 칠해졌다는 뜻이고, Nevada�
 서울 용산구 한남동에 위치한 멕시칸 식당 [Escondido](https://www.instagram.com/escondido_hannam)로 미슐랭을 받은 진우범 세프가 멕시코에 가서 이것저것 먹는 이야기를 담은 다큐이다.
 
 {{< youtube YJZkrP9wp6g >}}
-
 <br>
 
 3\. 빠니보플 멕시코 편
 
 {{< youtube id="sPrX_VQOqG4" playlistID="PLWehnFn-hSbszVy2pYWUl0f04sjYAtfQo" index="16" >}}
 <br>
+
 마지막으로 Cardi B 노래로 독후감을 마무리 하겠다.
 
 {{< youtube xTlNMmZKwpA >}}
